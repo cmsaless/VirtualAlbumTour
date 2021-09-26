@@ -1,0 +1,28 @@
+.App {
+    text-align: center;
+    height: 100%;
+}
+
+html, body {
+    height: 100%;
+    background-color: black;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.lines {
+    border-style: dotted;
+}
+
+.top-spacer {
+    margin-top: 200px;
+}
+
+.transparent-form-control {
+    background-color:rgba(0,0,0,0) !important;
+    border: 1px solid white;
+    color: white;
+    opacity: 1;
+}
