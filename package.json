@@ -1,5 +1,5 @@
 {
-  "name": "virtual-photo-album",
+  "name": "virtual-photo-album-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
         <BsNavbar bg="dark" variant="dark" expand="lg" className='transparent'>
             <Container className='navbar-container'>
-                <BsNavbar.Brand href="#home">React-Bootstrap</BsNavbar.Brand>
+                <BsNavbar.Brand href="#home">Chris' Photo Album</BsNavbar.Brand>
             </Container>
         </BsNavbar>
     );
