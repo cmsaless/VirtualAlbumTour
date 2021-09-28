@@ -1,5 +1,5 @@
 .App {
-    text-align: center;
+    /* text-align: center; */
     height: 100%;
 }
 
@@ -25,27 +25,13 @@ html, body {
     border: 1px solid white;
     color: white;
     opacity: 1;
-}
-
-.btn-image {
-    /* height: 10em;
-    width: 20em; */
-    height: 200px;
-    width: 350px;
-    font-size: 50px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/toronto.jpg') !important;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
     margin-bottom: 0.5em;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-    border-color: white !important;
-    margin-top: 0 !important;
 }
 
-.btn-image:hover {
-    background-image: url('./images/toronto.jpg') !important;
-    background-size: 105%;
+.view-all-link {
+    text-decoration: none !important;
+}
+
+hr {
+    color: white;
 }
