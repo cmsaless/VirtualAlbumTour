@@ -6,6 +6,11 @@ import './ImageButton.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ImageButton extends React.Component {
+
+    navigateToAlbumPage() {
+
+    }
+
     render() {
         return (
             <Button variant='primary' className='btn-image'

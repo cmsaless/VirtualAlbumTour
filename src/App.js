@@ -7,71 +7,31 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ImageButton from './components/ImageButton';
+import SearchPage from './components/SearchPage';
+import AlbumPage from './components/AlbumPage';
 
 class App extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchValue: '',
-            searchResults: [],
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.searchForAlbums = this.searchForAlbums.bind(this);
-    }
-
-    renderImageButtons() {
-        let buttons = [];
-        for (let i = 0; i < this.state.searchResults.length; i++) {
-            let elem = this.state.searchResults[i];
-            buttons.push(<ImageButton albumName={elem['Name']} filePath={elem['FilePath']} albumId={elem['Id']}></ImageButton>)
-        }
-        return buttons;
-    }
-
-    sayHello() {
-        fetch("http://localhost:4444/hello").then(res => res.text()).then(result => {
-            console.log(result);
-        });
-    }
-
-    searchForAlbums() {
-        fetch("http://localhost:4444/SearchForAlbum?searchValue=" + this.state.searchValue).then(res => res.json()).then(result => {
-            let newSearchResults = [];
-            for (let i=0; i<result.length; ++i) {
-                console.log(result[i]);
-                newSearchResults.push(result[i]);
-            }
-            this.setState({searchResults: newSearchResults});
-        });
-    }
-
-    handleChange(event) {
-        this.setState({ searchValue: event.target.value });
-    }
-
     render() {
         return (
-            <div className="App">
-                <Container className='page-content'>
-                    {Navbar()}
-                    <Row className='top-spacer'>
-                        <Col lg={4}>
-                            <Form.Control className='transparent-form-control' value={this.state.searchValue} onChange={event => this.handleChange(event)} placeholder="Name or place" />
-                            <Button variant='primary' type='button' onClick={this.searchForAlbums}>Search</Button>
-                            <hr />
-                            <a className='view-all-link' href='#'>View All →</a>
-                        </Col>
-                        <Col>
-                            {this.state.searchResults.length > 0 ? this.renderImageButtons() : <span></span>}
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+            <Router>
+                <Switch>
+                    <Route exact path="/album/:Id">
+                        <AlbumPage />
+                    </Route>
+                    <Route exact path="/">
+                        <SearchPage />
+                    </Route>
+                </Switch>
+            </Router>
         );
     }
 }

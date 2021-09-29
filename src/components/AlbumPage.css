@@ -1,0 +1,11 @@
+.fit-screen {
+    max-height: 90vh;
+  object-fit: contain;
+    /* height: auto;
+    margin: auto; */
+}
+
+.imgbox {
+    /* width: auto;
+    height: 90vh; */
+}
