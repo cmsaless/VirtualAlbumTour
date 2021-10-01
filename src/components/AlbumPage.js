@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Navbar from './Navbar';
 import Container from 'react-bootstrap/Container';
@@ -15,50 +15,51 @@ import {
 import './AlbumPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+function AlbumPage() {
 
-/*
-Call this function below to query the api for the album. Then in the same function, render the images in the carousel
- */
+    const [photoData, setPhotoData] = React.useState([]);
 
-function AlbumPageId() {
-    const { Id } = useParams()
-    return <h3>ID: {Id} lookin good</h3>
+    const { id } = useParams();
+
+    useEffect(() => {
+        fetch("http://localhost:4444/GetAlbum?albumId=" + id).then(res => res.json()).then(result => {
+            console.log(result);
+            setPhotoData(result);
+        });
+    }, []);
+
+    return (
+        <div className="App">
+            <Container className='page-content'>
+                {Navbar()}
+                <Carousel interval={null}>
+                    {renderCarouselItems(photoData)}
+                </Carousel>
+            </Container>
+        </div>
+    );
 }
 
-class AlbumPage extends React.Component {
+function renderCarouselItems(photoData) {
 
-    render() {
-        return (
-            <div className="App">
-                <Container className='page-content'>
-                    {Navbar()}
-                    <Carousel interval={null}>
-                        <Carousel.Item className='imgbox'>
-                            <img
-                                className="d-block w-100 fit-screen"
-                                src={process.env.PUBLIC_URL + "/images/Boston Pics/PXL_20210912_162831228.jpg"}
-                                alt="First slide"
-                            />
-                        </Carousel.Item>
-                        <Carousel.Item className='imgbox'>
-                            <img
-                                className="d-block w-100 fit-screen"
-                                src={process.env.PUBLIC_URL + "/images/Boston Pics/PXL_20210913_015053348.jpg"}
-                                alt="Second slide"
-                            />
-                        </Carousel.Item>
-                        <Carousel.Item className='imgbox'>
-                            <img
-                                className="d-block w-100 fit-screen"
-                                src={process.env.PUBLIC_URL + "/images/Boston Pics/PXL_20210914_165626438.jpg"}
-                                alt="Third slide"
-                            />
-                        </Carousel.Item>
-                    </Carousel>
-                </Container>
-            </div>
-        );
+    let carouselItems = [];
+
+    for (let i = 0; i < photoData.length; i++) {
+        let elem = photoData[i];
+        let url = process.env.PUBLIC_URL + "/images/" + elem['Name'] + "/" + elem['FilePath'];
+        carouselItems.push(
+            <Carousel.Item className='imgbox' key={elem['Id']}>
+                <img
+                    className="d-block w-100 fit-screen"
+                    src={url}
+                    alt=""
+                    
+                />
+            </Carousel.Item>
+        )
     }
+
+    return carouselItems;
 }
 
 export default AlbumPage;

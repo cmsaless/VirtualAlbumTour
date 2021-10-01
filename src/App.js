@@ -24,7 +24,7 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/album/:Id">
+                    <Route exact path="/album/:id">
                         <AlbumPage />
                     </Route>
                     <Route exact path="/">

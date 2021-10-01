@@ -33,12 +33,6 @@ class SearchPage extends React.Component {
         return buttons;
     }
 
-    sayHello() {
-        fetch("http://localhost:4444/hello").then(res => res.text()).then(result => {
-            console.log(result);
-        });
-    }
-
     searchForAlbums() {
 
         if (this.state.searchValue === '') {
